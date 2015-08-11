@@ -64,6 +64,7 @@ class LoadJobData extends AbstractFixture implements OrderedFixtureInterface
         $job_expired->setCreatedAt(new \DateTime('2005-12-01'));
         
         for ($i = 100; $i <= 130; $i ++) {
+            sleep(1);
             $job = new Job();
             $job->setCategory($em->merge($this->getReference('category-programming')));
             $job->setType('full-time');

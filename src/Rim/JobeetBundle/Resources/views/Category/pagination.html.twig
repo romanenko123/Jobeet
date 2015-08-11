@@ -1,0 +1,27 @@
+{% if pageCount > 1 %}
+    <div class="pagination">
+        <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">
+            <img src="{{ asset('bundles/rimjobeet/images/first.png') }}" alt="First page" title="First page" />
+        </a>
+
+        <a href="{{ path(route, query|merge({(pageParameterName): previous|default(first)})) }}">
+            <img src="{{ asset('bundles/rimjobeet/images/previous.png') }}" alt="Previous page" title="Previous page" />
+        </a>
+
+        {% for page in pagesInRange %}
+            {% if page != current %}
+                <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+            {% else %}
+                {{ page }}
+            {% endif %}
+        {% endfor %}
+
+        <a href="{{ path(route, query|merge({(pageParameterName): next|default(last)})) }}">
+            <img src="{{ asset('bundles/rimjobeet/images/next.png') }}" alt="Next page" title="Next page" />
+        </a>
+
+        <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">
+            <img src="{{ asset('bundles/jobeetjobboard/images/last.png') }}" alt="Last page" title="Last page" />
+        </a>
+    </div>
+{% endif %}

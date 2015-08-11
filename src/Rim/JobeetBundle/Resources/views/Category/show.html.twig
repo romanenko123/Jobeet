@@ -1,8 +1,22 @@
-{% extends "::base.html.twig" %}
+{% extends 'RimJobeetBundle::layout.html.twig' %}
 
-{% block title %}RimJobeetBundle:Category:show{% endblock %}
+{% block title %}Jobs in the {{ category.name }} category{% endblock %}
 
-{% block body %}
-{{ dump(category) }}
-<h1>Welcome to the Category:show page</h1>
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/rimjobeet/css/jobs.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block content %}
+    <div class="category">
+        <div class="feed">
+            <a href="">Feed</a>
+        </div>
+        <h1>{{ category.name }}</h1>
+    </div>
+{#     {{ dump(pagination) }}#}
+    {{ include ('RimJobeetBundle:Job:list.html.twig', {'jobs': pagination}) }}
+    
+    {{ knp_pagination_render(pagination, 'RimJobeetBundle:Category:pagination.html.twig') }}
+
 {% endblock %}
