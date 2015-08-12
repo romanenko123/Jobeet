@@ -14,12 +14,16 @@
                     </div>
                     <h1><a href="{{ path('category_show', { 'slug': category.slug }) }}">{{ category.name }}</a></h1>
                 </div>
-                {{ include ('RimJobeetBundle:Job:list.html.twig', {'jobs': category.activejobs}) }}
+                <div id="table_{{ category.slug }}">
+                    {{ include ('RimJobeetBundle:Job:list.html.twig', {'jobs': category.activejobs}) }}
+                </div>
 
                 {% if category.morejobs %}
                     <div class="more_jobs">
-                        and <a href="{{ path('category_show', {'slug': category.slug}) }}">{{ category.morejobs }}</a>
-                        more...
+                        <div id="{{ category.slug }}">
+                            and <a href="{{ path('category_show', {'slug': category.slug}) }}">{{ category.morejobs }}</a>
+                            more...
+                        </div>
                     </div>
                 {% endif %}
             </div>
